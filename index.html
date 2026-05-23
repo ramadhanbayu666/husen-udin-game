@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title></title>
+	<meta name="generator" content="LibreOffice 24.8.1.2 (Linux)"/>
+	<meta name="author" content="bayuramadhan0813@gmail.com"/>
+	<meta name="created" content="2026-05-23T15:22:00"/>
+	<meta name="changedby" content="bayuramadhan0813@gmail.com"/>
+	<meta name="changed" content="2026-05-23T15:22:00"/>
+	<meta name="AppVersion" content="16.0000"/>
+	<style type="text/css">
+		@page { size: 8.27in 11.69in; margin: 1in }
+		p { line-height: 115%; text-align: left; orphans: 2; widows: 2; margin-bottom: 0.1in; direction: ltr; background: transparent }
+	</style>
+</head>
+<body lang="id-ID" link="#000080" vlink="#800000" dir="ltr"><p style="line-height: 108%; margin-bottom: 0.11in">
+&lt;!DOCTYPE html&gt;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">&lt;html
+lang=&quot;id&quot;&gt;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">&lt;head&gt;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">&lt;meta
+charset=&quot;UTF-8&quot;&gt;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">&lt;meta
+name=&quot;viewport&quot; content=&quot;width=device-width,
+initial-scale=1.0, user-scalable=no&quot;&gt;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">&lt;title&gt;Husen
+&amp; Udin - Lomba Lari Petualangan&lt;/title&gt;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">&lt;style&gt;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">body,html{margin:0;padding:0;overflow:hidden;background:#87CEEB;font-family:Arial}</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">canvas{display:block}</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">#hud{position:fixed;top:10px;left:10px;color:#fff;font:700
+20px Arial;z-index:10;text-shadow:2px 2px 4px #000}</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">#hud
+div{margin-bottom:5px}</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">#controls{position:fixed;bottom:20px;width:100%;display:flex;justify-content:space-between;z-index:10;pointer-events:none}</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">.btn{width:70px;height:70px;background:rgba(255,255,255,0.3);border:3px
+solid #fff;border-radius:50%;margin:0
+20px;pointer-events:auto;touch-action:none}</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">.btn:active{background:rgba(255,255,255,0.6)}</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">#btnJump{width:90px;height:90px}</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">#startText{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);font:700
+40px Arial;color:#FFD700;z-index:10;text-shadow:3px 3px 6px
+#000;display:none}</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">&lt;/style&gt;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">&lt;script
+type=&quot;importmap&quot;&gt;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">{&quot;imports&quot;:{&quot;three&quot;:&quot;https://unpkg.com/three@0.160.0/build/three.module.js&quot;}}</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">&lt;/script&gt;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">&lt;/head&gt;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">&lt;body&gt;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">&lt;div id=&quot;hud&quot;&gt;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  &lt;div&gt;JARAK:
+&lt;span id=&quot;score&quot;&gt;0&lt;/span&gt;m&lt;/div&gt;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  &lt;div&gt;NYAWA:
+&lt;span id=&quot;lives&quot;&gt;3&lt;/span&gt;&lt;/div&gt;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">&lt;/div&gt;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">&lt;div
+id=&quot;startText&quot;&gt;BAYU BUNDAR&lt;br&gt;START!&lt;/div&gt;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">&lt;div
+id=&quot;controls&quot;&gt;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  &lt;div
+class=&quot;btn&quot; id=&quot;btnLeft&quot;&gt;&lt;/div&gt;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  &lt;div
+class=&quot;btn&quot; id=&quot;btnJump&quot;&gt;&lt;/div&gt;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  &lt;div
+class=&quot;btn&quot; id=&quot;btnRight&quot;&gt;&lt;/div&gt;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">&lt;/div&gt;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">&lt;canvas
+id=&quot;c&quot;&gt;&lt;/canvas&gt;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"><br/>
+<br/>
+
+</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">&lt;script
+type=&quot;module&quot;&gt;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">import * as THREE
+from 'three';</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"><br/>
+<br/>
+
+</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">// ===== 1. SETUP
+SCENE =====</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">const scene = new
+THREE.Scene();</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">scene.fog = new
+THREE.Fog(0x87CEEB, 30, 100);</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">const camera =
+new THREE.PerspectiveCamera(70, innerWidth/innerHeight, 0.1, 200);</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">const renderer =
+new THREE.WebGLRenderer({canvas: document.getElementById('c'),
+antialias: true});</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">renderer.setSize(innerWidth,
+innerHeight);</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">renderer.setClearColor(0x87CEEB);</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">renderer.shadowMap.enabled
+= true;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"><br/>
+<br/>
+
+</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">// ===== 2.
+LIGHTING =====</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">scene.add(new
+THREE.AmbientLight(0xffffff, 0.7));</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">const sun = new
+THREE.DirectionalLight(0xffffff, 1);</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">sun.position.set(10,
+20, 10);</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">sun.castShadow =
+true;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">scene.add(sun);</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"><br/>
+<br/>
+
+</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">// ===== 3. GARIS
+START &quot;BAYU BUNDAR&quot; =====</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">const canvas =
+document.createElement('canvas');</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">canvas.width =
+512; canvas.height = 128;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">const ctx =
+canvas.getContext('2d');</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">ctx.fillStyle =
+'#ffffff';</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">ctx.fillRect(0,
+0, 512, 128);</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">ctx.font = 'bold
+48px Arial';</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">ctx.fillStyle =
+'#ff0000';</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">ctx.textAlign =
+'center';</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">ctx.fillText('BAYU
+BUNDAR', 256, 50);</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">ctx.fillStyle =
+'#000000';</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">ctx.fillText('START',
+256, 100);</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">const startTex =
+new THREE.CanvasTexture(canvas);</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">const startLine =
+new THREE.Mesh(</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  new
+THREE.PlaneGeometry(12, 3, 24, 24),</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  new
+THREE.MeshBasicMaterial({map: startTex})</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">);</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">startLine.rotation.x
+= -Math.PI/2;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">startLine.position.set(0,
+0.01, 0);</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">scene.add(startLine);</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"><br/>
+<br/>
+
+</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">// ===== 4. JALAN
+&amp; RUMPUT - 24 SEGMENT =====</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">const road = new
+THREE.Mesh(</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  new
+THREE.PlaneGeometry(12, 500, 24, 24),</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  new
+THREE.MeshStandardMaterial({color: 0x8B4513, roughness: 0.9})</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">);</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">road.rotation.x =
+-Math.PI/2;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">road.receiveShadow
+= true;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">scene.add(road);</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"><br/>
+<br/>
+
+</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">const grassL =
+new THREE.Mesh(</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  new
+THREE.PlaneGeometry(20, 500, 24, 24),</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  new
+THREE.MeshStandardMaterial({color: 0x228B22})</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">);</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">grassL.rotation.x
+= -Math.PI/2;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">grassL.position.set(-16,
+-0.01, 0);</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">scene.add(grassL);</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"><br/>
+<br/>
+
+</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">const grassR =
+grassL.clone();</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">grassR.position.x
+= 16;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">scene.add(grassR);</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"><br/>
+<br/>
+
+</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">// ===== 5.
+FUNGSI BIKIN KARAKTER GEOMETRY 24 SEGMENT =====</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">function
+buatKarakter(warnaBaju, nama) {</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  const char =
+new THREE.Group();</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"><br/>
+<br/>
+
+</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  // Kepala botak
+- SphereGeometry 24 segment</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  const kepala =
+new THREE.Mesh(</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">    new
+THREE.SphereGeometry(0.5, 24, 24),</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">    new
+THREE.MeshStandardMaterial({color: 0xFFDBAC, roughness: 0.5})</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  );</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"> 
+kepala.position.y = 1.3;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"> 
+kepala.castShadow = true;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"> 
+char.add(kepala);</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"><br/>
+<br/>
+
+</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  // Mata -
+SphereGeometry 24 segment</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  const mata1 =
+new THREE.Mesh(new THREE.SphereGeometry(0.08, 24, 24), new
+THREE.MeshBasicMaterial({color: 0x000000}));</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"> 
+mata1.position.set(-0.15, 1.35, 0.45);</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"> 
+char.add(mata1);</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  const mata2 =
+mata1.clone();</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"> 
+mata2.position.x = 0.15;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"> 
+char.add(mata2);</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"><br/>
+<br/>
+
+</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  // Badan -
+CylinderGeometry 24 segment</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  const badan =
+new THREE.Mesh(</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">    new
+THREE.CylinderGeometry(0.4, 0.5, 0.8, 24),</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">    new
+THREE.MeshStandardMaterial({color: warnaBaju, metalness: 0.1,
+roughness: 0.7})</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  );</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"> 
+badan.position.y = 0.6;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"> 
+badan.castShadow = true;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"> 
+char.add(badan);</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"><br/>
+<br/>
+
+</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  // Huruf di
+baju</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  const
+hurufCanvas = document.createElement('canvas');</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"> 
+hurufCanvas.width = 128; hurufCanvas.height = 128;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  const hCtx =
+hurufCanvas.getContext('2d');</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  hCtx.fillStyle
+= '#ffffff';</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  hCtx.font =
+'bold 100px Arial';</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  hCtx.textAlign
+= 'center';</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"> 
+hCtx.fillText(nama, 64, 90);</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  const hurufTex
+= new THREE.CanvasTexture(hurufCanvas);</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  const huruf =
+new THREE.Mesh(</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">    new
+THREE.PlaneGeometry(0.3, 0.3),</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">    new
+THREE.MeshBasicMaterial({map: hurufTex, transparent: true})</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  );</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"> 
+huruf.position.set(0, 0.6, 0.51);</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"> 
+char.add(huruf);</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"><br/>
+<br/>
+
+</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  // Tangan -
+CylinderGeometry 24 segment</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  const
+tanganKiri = new THREE.Mesh(</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">    new
+THREE.CylinderGeometry(0.1, 0.1, 0.6, 24),</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">    new
+THREE.MeshStandardMaterial({color: 0xFFDBAC})</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  );</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"> 
+tanganKiri.position.set(-0.6, 0.6, 0);</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"> 
+tanganKiri.rotation.z = Math.PI/4;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"> 
+tanganKiri.castShadow = true;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"> 
+char.add(tanganKiri);</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  const
+tanganKanan = tanganKiri.clone();</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"> 
+tanganKanan.position.x = 0.6;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"> 
+tanganKanan.rotation.z = -Math.PI/4;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"> 
+char.add(tanganKanan);</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"><br/>
+<br/>
+
+</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  // Kaki -
+CylinderGeometry 24 segment</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  const kakiKiri
+= new THREE.Mesh(</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">    new
+THREE.CylinderGeometry(0.12, 0.12, 0.5, 24),</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">    new
+THREE.MeshStandardMaterial({color: 0x0000ff})</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  );</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"> 
+kakiKiri.position.set(-0.2, 0.25, 0);</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"> 
+kakiKiri.castShadow = true;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"> 
+char.add(kakiKiri);</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  const kakiKanan
+= kakiKiri.clone();</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"> 
+kakiKanan.position.x = 0.2;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"> 
+char.add(kakiKanan);</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"><br/>
+<br/>
+
+</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  return char;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">}</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"><br/>
+<br/>
+
+</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">// ===== 6.
+PLAYER: HUSEN =====</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">const player =
+buatKarakter(0xffff00, 'H'); // Kuning</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">player.position.set(0,
+0, 2);</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">scene.add(player);</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"><br/>
+<br/>
+
+</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">// ===== 7.
+OBSTACLE PETUALANGAN - 24 SEGMENT =====</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">const obstacles =
+[];</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">function
+spawnObstacle(z) {</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  const type =
+Math.floor(Math.random()*3);</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  let obs;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  if(type === 0){
+// Batu - DodecahedronGeometry 24 segment</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">    obs = new
+THREE.Mesh(</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">      new
+THREE.DodecahedronGeometry(0.6, 0),</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">      new
+THREE.MeshStandardMaterial({color: 0x808080, roughness: 1})</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">    );</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  } else if(type
+=== 1){ // Pohon - ConeGeometry 24 segment</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">    obs = new
+THREE.Group();</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">    const batang
+= new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.2, 1.5, 24), new
+THREE.MeshStandardMaterial({color: 0x8B4513}));</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">    const daun =
+new THREE.Mesh(new THREE.ConeGeometry(0.8, 2, 24), new
+THREE.MeshStandardMaterial({color: 0x006400}));</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">   
+daun.position.y = 1.5;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">   
+obs.add(batang, daun);</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  } else { //
+Durian - SphereGeometry 24 segment</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">    obs = new
+THREE.Mesh(</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">      new
+THREE.SphereGeometry(0.5, 24, 24),</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">      new
+THREE.MeshStandardMaterial({color: 0x2d5016, roughness: 1})</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">    );</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  }</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"> 
+obs.position.set((Math.random()-0.5)*8, type===1?0:0.5, z);</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  obs.castShadow
+= true;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  scene.add(obs);</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"> 
+obstacles.push(obs);</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">}</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">for(let i = 0; i
+&lt; 20; i++) spawnObstacle(-20 - i*10);</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"><br/>
+<br/>
+
+</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">// ===== 8.
+KONTROL PC + ANDROID =====</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">let moveX = 0,
+isJump = false, velocityY = 0, onGround = true;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">const keys = {};</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">addEventListener('keydown',
+e =&gt; {</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"> 
+keys[e.key.toLowerCase()] = true;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  if(e.key === '
+' || e.key === 'w' || e.key === 'ArrowUp') jump();</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">});</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">addEventListener('keyup',
+e =&gt; keys[e.key.toLowerCase()] = false);</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"><br/>
+<br/>
+
+</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">// Touch Android</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">document.getElementById('btnLeft').ontouchstart
+= () =&gt; moveX = -1;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">document.getElementById('btnLeft').ontouchend
+= () =&gt; moveX = 0;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">document.getElementById('btnRight').ontouchstart
+= () =&gt; moveX = 1;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">document.getElementById('btnRight').ontouchend
+= () =&gt; moveX = 0;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">document.getElementById('btnJump').ontouchstart
+= () =&gt; jump();</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"><br/>
+<br/>
+
+</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">function jump() {</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  if(onGround) {</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">    velocityY =
+0.35;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">    onGround =
+false;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  }</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">}</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"><br/>
+<br/>
+
+</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">// ===== 9. GAME
+LOOP LOMBA LARI =====</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">let score = 0,
+lives = 3, gameSpeed = 0.25, gameStarted = false;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">camera.position.set(0,
+4, 10);</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"><br/>
+<br/>
+
+</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">// Tampilan START</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">document.getElementById('startText').style.display
+= 'block';</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">setTimeout(() =&gt;
+{</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"> 
+document.getElementById('startText').style.display = 'none';</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  gameStarted =
+true;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">}, 2000);</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"><br/>
+<br/>
+
+</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">function
+animate() {</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"> 
+requestAnimationFrame(animate);</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"> 
+if(!gameStarted) return;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"><br/>
+<br/>
+
+</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  // Kontrol PC</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  if(keys['a'] ||
+keys['arrowleft']) moveX = -1;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  else
+if(keys['d'] || keys['arrowright']) moveX = 1;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  else
+if(!document.querySelector('.btn:active')) moveX = 0;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"><br/>
+<br/>
+
+</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  // Gerak player</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"> 
+player.position.x += moveX * 0.15;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"> 
+player.position.x = Math.max(-5, Math.min(5, player.position.x));</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"><br/>
+<br/>
+
+</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  // Lompat +
+Gravitasi</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"> 
+player.position.y += velocityY;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  velocityY -=
+0.02;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"> 
+if(player.position.y &lt;= 0) {</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">   
+player.position.y = 0;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">    velocityY =
+0;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">    onGround =
+true;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  }</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"><br/>
+<br/>
+
+</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  // Animasi lari</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  const runCycle
+= Date.now() * 0.01;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"> 
+player.rotation.z = Math.sin(runCycle) * 0.1;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"> 
+player.children[5].rotation.x = Math.sin(runCycle) * 0.5; // kaki
+kiri</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"> 
+player.children[6].rotation.x = -Math.sin(runCycle) * 0.5; // kaki
+kanan</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"><br/>
+<br/>
+
+</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  // Jalan maju
+terus</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"> 
+player.position.z -= gameSpeed;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  score =
+Math.floor(-player.position.z);</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"> 
+document.getElementById('score').textContent = score;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"><br/>
+<br/>
+
+</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  // Kamera
+ngikutin</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"> 
+camera.position.set(player.position.x*0.5, 4, player.position.z +
+10);</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"> 
+camera.lookAt(player.position.x, 1, player.position.z - 5);</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"><br/>
+<br/>
+
+</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  // Cek tabrakan
+obstacle</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"> 
+obstacles.forEach((obs, i) =&gt; {</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">   
+if(obs.position.distanceTo(player.position) &lt; 1.2) {</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">     
+scene.remove(obs);</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">     
+obstacles.splice(i, 1);</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">      lives--;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">     
+document.getElementById('lives').textContent = lives;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">     
+spawnObstacle(player.position.z - 100);</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">      if(lives &lt;=
+0) {</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">       
+alert(`GAME OVER\nJarak: ${score}m\n\nGame by Bayu Bundar`);</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">       
+location.reload();</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">      }</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">    }</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">    // Respawn
+obstacle</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">   
+if(obs.position.z &gt; player.position.z + 20) {</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">     
+obs.position.z = player.position.z - 100;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">     
+obs.position.x = (Math.random()-0.5)*8;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">    }</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  });</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"><br/>
+<br/>
+
+</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  gameSpeed +=
+0.0001; // Makin cepet</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"> 
+renderer.render(scene, camera);</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">}</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">animate();</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"><br/>
+<br/>
+
+</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">// Resize</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">addEventListener('resize',
+() =&gt; {</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">  camera.aspect =
+innerWidth/innerHeight;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"> 
+camera.updateProjectionMatrix();</p>
+<p style="line-height: 108%; margin-bottom: 0.11in"> 
+renderer.setSize(innerWidth, innerHeight);</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">});</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">&lt;/script&gt;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">&lt;/body&gt;</p>
+<p style="line-height: 108%; margin-bottom: 0.11in">&lt;/html&gt;</p>
+</body>
+</html>
